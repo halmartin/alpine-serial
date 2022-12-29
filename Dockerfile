@@ -1,6 +1,10 @@
 ARG ALPINE_VERSION=3.17
 FROM alpine:$ALPINE_VERSION
 ARG ALPINE_VERSION
+ARG ALPINE_ARCH=x86_64
+ENV ALPINE_VERSION=$ALPINE_VERSION
+ENV ALPINE_ARCH=$ALPINE_ARCH
+ENV ALPINE_URI_BASE="http://dl-cdn.alpinelinux.org/alpine/v${ALPINE_VERSION}"
 
 RUN apk update && apk add --no-cache alpine-sdk build-base apk-tools \
   alpine-conf busybox fakeroot syslinux xorriso squashfs-tools sudo \
@@ -16,7 +20,12 @@ COPY --chmod=0775 mkimg.serialtty.sh /root/aports/scripts/
 COPY --chmod=0755 genapkovl-mkimgoverlay.sh /root/aports/scripts/
 
 WORKDIR /root/aports/scripts
-# you're supposed to be able to use args
-# at build time, but this doesn't play nice
-# with the CMD so whatever
-CMD ["./mkimage.sh", "--arch", "x86_64", "--outdir", "/out", "--profile", "serialtty", "--tag", "3.17", "--repository", "http://dl-cdn.alpinelinux.org/alpine/v3.17/main", "--repository", "http://dl-cdn.alpinelinux.org/alpine/v3.17/community"]
+
+CMD ./mkimage.sh \
+  --arch $ALPINE_ARCH \
+  --outdir /out \
+  --profile serialtty \
+  --tag $ALPINE_VERSION \
+  --repository ${ALPINE_URI_BASE}/main \
+  --repository ${ALPINE_URI_BASE}/community
+
