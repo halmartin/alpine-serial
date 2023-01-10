@@ -16,9 +16,6 @@ WORKDIR /root
 RUN touch /root/.default_boot_services
 RUN git clone --depth=1 https://gitlab.alpinelinux.org/alpine/aports.git
 
-COPY --chmod=0775 mkimg.serialtty.sh /root/aports/scripts/
-COPY --chmod=0755 genapkovl-mkimgoverlay.sh /root/aports/scripts/
-
 WORKDIR /root/aports/scripts
 
 CMD ./mkimage.sh \

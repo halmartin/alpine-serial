@@ -17,7 +17,7 @@ docker build -f Dockerfile --build-arg ALPINE_VERSION=3.17 -t alpine-serial-iso-
 # Generating the ISO
 
 ```
-docker run -it -v $(pwd)/out:/out alpine-serial-iso-builder
+docker run -it -v $(pwd)/mkimg.serialtty.sh:/root/aports/scripts/mkimg.serialtty.sh -v $(pwd)/genapkovl-mkimgoverlay.sh:/root/aports/scripts/genapkovl-mkimgoverlay.sh -v $(pwd)/out:/out alpine-serial-iso-builder
 ```
 
 # Using the ISO
