@@ -8,7 +8,8 @@ profile_serialtty() {
         apks="$apks nvme-cli dmidecode pciutils
                 lvm2 mdadm mkinitfs mtools usbutils
                 parted rsync sfdisk syslinux util-linux
-                dosfstools efibootmgr cryptsetup
+                dosfstools efibootmgr cryptsetup debootstrap
+                openssh python3 partx e2fsprogs-extra
                 "
         local _k _a
         apkovl="genapkovl-mkimgoverlay.sh"
