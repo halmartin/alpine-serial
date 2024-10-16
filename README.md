@@ -11,7 +11,7 @@ This repository contains a `Dockerfile` to easily and quickly generate an Alpine
 # Building
 
 ```
-docker build -f Dockerfile --build-arg ALPINE_VERSION=3.18 -t alpine-serial-iso-builder .
+docker build -f Dockerfile --build-arg ALPINE_VERSION=3.20 -t alpine-serial-iso-builder .
 ```
 
 # Generating the ISO
